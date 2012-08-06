@@ -1,0 +1,124 @@
+<project name="send-my-email" default="test" basedir=".">
+	
+   <description>Ant Build File for Send My Email</description>
+<!--
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                           Properties
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-->
+	<property name="application" location="send-my-email"/>
+	<property name="src-main" location="src/main/java"/>
+	<property name="src-test" location="src/test/java"/>
+	<property name="lib" location="lib"/>
+	<property name="target"  location="target"/>
+	<property name="target-classes"  location="target/classes"/>
+	<property name="target-test-classes"  location="target/test-classes"/>
+	<property name="target-app"	location="target/app"/>
+
+	<path id="main.extlibs.class.path">
+		<fileset dir="${lib}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<path id="test.extlibs.class.path">
+		<path refid="main.extlibs.class.path" />
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+<!--
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                              Targets
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+-->
+	<target name="init" description ="Creates the target folders">
+      <mkdir dir="${src-main}"/>
+      <mkdir dir="${src-test}"/>
+      <mkdir dir="${lib}"/>
+	  <mkdir dir="${target}"/>
+	  <mkdir dir="${target-classes}"/>
+	  <mkdir dir="${target-test-classes}"/>
+	  <mkdir dir="${target-app}"/>
+      
+      <copy todir="${src-main}" verbose="true">
+            <fileset file="./README.md"/>
+      </copy>
+      <copy todir="${src-test}" verbose="true">
+            <fileset file="./README.md"/>
+      </copy>
+      <copy todir="${target-classes}" verbose="true">
+            <fileset file="./README.md"/>
+      </copy>
+      <copy todir="${target-test-classes}" verbose="true">
+            <fileset file="./README.md"/>
+      </copy>
+      <copy todir="${target-app}" verbose="true">
+            <fileset file="./README.md"/>
+      </copy>
+   </target>
+
+
+	<target name="clean" description="Removes the target folders" >
+		<delete includeEmptyDirs="true" failonerror="false" verbose="true" >
+			<fileset dir="${target}" defaultexcludes="false"/>
+		</delete>
+	</target>
+
+	<target name="compile-eclipse" depends="init" description="Compiles the main-eclipse source" >
+		<copy todir="${target-classes}">
+			<fileset dir="${src-main}">
+				<include name="**/*.properties"/>
+			</fileset>
+		</copy>
+	</target>
+	<target name="compile-main" depends="init" description="Compiles the main source" >
+		<javac debug="true"  srcdir="${src-main}" destdir="${target-classes}" includeantruntime="false">
+			<classpath>
+				<path refid="main.extlibs.class.path" />
+			</classpath>
+		</javac>
+		<copy todir="${target-classes}">
+			<fileset dir="${src-main}">
+				<include name="**/*.properties"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="compile-test" depends="compile-main" description="Compiles the test source" >
+		<javac  debug="true" debugLevel="source" srcdir="${src-test}"  destdir="${target-test-classes}" 
+      includeantruntime="true">
+			<classpath>
+				<pathelement location="${target-classes}"/>
+				<path refid="test.extlibs.class.path" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="test" depends="compile-test" description="Runs the tests">
+		<junit printsummary="yes" haltonfailure="true" showoutput="true" >
+			<classpath>
+				<pathelement location="${target-classes}"/>
+				<pathelement location="${target-test-classes}"/>
+				<path refid="test.extlibs.class.path" />
+			</classpath>
+			<formatter type="plain"/>
+		</junit>
+	</target>
+
+	<target name="package" depends="test" description="Packages the main classes into a jar" >
+		<buildnumber />
+		<jar jarfile="${target}/${application}.jar" basedir="${target-classes}"/>
+	</target>
+
+	<!-- USAGE: ant deploy-app -Dtarget-app=Program -->
+	<target name="deploy-app" depends="package">
+		<delete dir="${target-apps}/${target-app}" includeEmptyDirs="true" verbose="true" failonerror="false"/>
+		<copy todir="${target-apps}/${target-app}" verbose="true">
+			<fileset id="jar-fileset" dir="${target}">
+				<filename name="*.jar"/>
+			</fileset>
+		</copy>
+	</target>
+</project>
