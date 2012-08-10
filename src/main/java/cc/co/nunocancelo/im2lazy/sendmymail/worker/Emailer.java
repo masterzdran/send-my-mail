@@ -16,7 +16,9 @@
  */
 package cc.co.nunocancelo.im2lazy.sendmymail.worker;
 
+import cc.co.nunocancelo.im2lazy.sendmymail.model.Contact;
 import cc.co.nunocancelo.im2lazy.sendmymail.model.Email;
+import cc.co.nunocancelo.im2lazy.sendmymail.model.EmailAttachment;
 
 /**
  * @author Nuno Cancelo (nuno.cancelo@gmail.com)
@@ -24,28 +26,37 @@ import cc.co.nunocancelo.im2lazy.sendmymail.model.Email;
  */
 public class Emailer {
 	private Email email;
-	private boolean sendEach;
-	
 	public Emailer() {
-		this(null,false);
+		this(null);
 	}
 
-	public Emailer(Email email, boolean sendEach) {
+	public Emailer(Email email) {
 		this.email = email;
-		this.sendEach = sendEach;
 	}
 	public void setEmail(Email email) {
 		this.email = email;
 	}
-	public void setSendEach(boolean sendEach) {
-		this.sendEach = sendEach;
-	}
-	public void sendEmail(){
-		if (email == null) return;
-	}
-	
-	private void emailer(){
+
+	public boolean sendEmail(){
+		if (email == null) return false;
+		boolean r= false;
+		int all=0,send=0;
+		EmailerWorker mail = new EmailerWorker(email.getHost());
+		
+		for(String pdfAttachment : email.getEmailAttachment().getFileList())
+			mail.addAttachment(pdfAttachment);
+		
+		for(Contact c : email.getEmailHeader().getTo().getList()){
+			r=mail.send(c, email.getEmailDetail().getSubject(), email.getEmailDetail().getBody());
+			if(r){
+				System.out.println("email sent: "+c.getEmail());
+				++send;
+			}
+			++all;
+		}
+		return all == send;
 		
 	}
+
 
 }

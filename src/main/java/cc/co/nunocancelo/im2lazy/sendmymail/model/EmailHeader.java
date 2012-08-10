@@ -27,26 +27,16 @@ import cc.co.nunocancelo.im2lazy.sendmymail.exception.InvalidEmailException;
  */
 public class EmailHeader {
 	private Contact from;
-	private Set<Contact> to;
-	private Set<Contact> cc;
-	private Set<Contact> bcc;
+	private ContactList to;
+	private ContactList cc;
+	private ContactList bcc;
 	public EmailHeader() {
 		this.from = new Contact();
-		this.to = new HashSet<Contact>();
-		this.cc = new HashSet<Contact>();
-		this.bcc = new HashSet<Contact>();
+		this.to = new ContactList();
+		this.cc = new ContactList();
+		this.bcc = new ContactList();
 	}
-	
-	public boolean addToContact(Contact contact){
-		return to.add(contact);
-	}
-	public boolean addCcContact(Contact contact){
-		return cc.add(contact);
-	}
-	public boolean addBccContact(Contact contact){
-		return bcc.add(contact);
-	}
-	public boolean setFromContact(Contact contact){
+	public boolean setFrom(Contact contact){
 		if(contact == null) return false;
 		if(contact.getEmail().trim().isEmpty()) return false;
 		try {
@@ -57,13 +47,22 @@ public class EmailHeader {
 		from.setName(contact.getName());
 		return true;
 	}
-	public Iterable<Contact> getBcc() {
+	public void setBcc(ContactList bcc) {
+		this.bcc = bcc;
+	}
+	public void setCc(ContactList cc) {
+		this.cc = cc;
+	}
+	public void setTo(ContactList to) {
+		this.to = to;
+	}
+	public ContactList getBcc() {
 		return bcc;		
 	}
-	public Iterable<Contact> getCc() {
+	public ContactList getCc() {
 		return cc;
 	}
-	public Iterable<Contact> getTo() {
+	public ContactList getTo() {
 		return to;
 	}
 	public Contact getFrom() {

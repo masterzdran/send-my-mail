@@ -110,7 +110,8 @@ public class SendMyMail {
 			e.printStackTrace();
 		} finally {
 	    	try {
-				t.close();
+	    		if(t != null)
+	    			t.close();
 			} catch (MessagingException e) {
 				e.printStackTrace();
 			}
