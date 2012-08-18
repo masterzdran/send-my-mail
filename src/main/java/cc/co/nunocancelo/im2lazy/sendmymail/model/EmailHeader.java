@@ -20,6 +20,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import cc.co.nunocancelo.im2lazy.sendmymail.exception.InvalidEmailException;
+import cc.co.nunocancelo.im2lazy.sendmymail.model.contact.Contact;
+import cc.co.nunocancelo.im2lazy.sendmymail.model.contact.ContactList;
 
 /**
  * @author Nuno Cancelo (nuno.cancelo@gmail.com)

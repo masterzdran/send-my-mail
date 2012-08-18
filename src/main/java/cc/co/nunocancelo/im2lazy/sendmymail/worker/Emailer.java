@@ -16,9 +16,9 @@
  */
 package cc.co.nunocancelo.im2lazy.sendmymail.worker;
 
-import cc.co.nunocancelo.im2lazy.sendmymail.model.Contact;
 import cc.co.nunocancelo.im2lazy.sendmymail.model.Email;
 import cc.co.nunocancelo.im2lazy.sendmymail.model.EmailAttachment;
+import cc.co.nunocancelo.im2lazy.sendmymail.model.contact.Contact;
 
 /**
  * @author Nuno Cancelo (nuno.cancelo@gmail.com)

@@ -33,8 +33,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import cc.co.nunocancelo.im2lazy.sendmymail.model.Contact;
 import cc.co.nunocancelo.im2lazy.sendmymail.model.Host;
+import cc.co.nunocancelo.im2lazy.sendmymail.model.contact.Contact;
 
 import com.sun.mail.smtp.SMTPTransport;
 

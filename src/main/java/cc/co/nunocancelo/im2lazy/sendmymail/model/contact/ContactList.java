@@ -14,7 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with SendMyMail.  If not, see <http://www.gnu.org/licenses/>.
  */
-package cc.co.nunocancelo.im2lazy.sendmymail.model;
+package cc.co.nunocancelo.im2lazy.sendmymail.model.contact;
 
 import java.util.HashSet;
 import java.util.Set;
