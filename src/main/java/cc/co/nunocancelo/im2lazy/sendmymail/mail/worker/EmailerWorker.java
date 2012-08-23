@@ -14,7 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with SendMyMail.  If not, see <http://www.gnu.org/licenses/>.
  */
-package cc.co.nunocancelo.im2lazy.sendmymail.worker;
+package cc.co.nunocancelo.im2lazy.sendmymail.mail.worker;
 
 import java.io.File;
 import java.util.Properties;
@@ -56,13 +56,25 @@ public class EmailerWorker {
 		setHost();
 	}
 	public void addAttachment(String pdfAttachment){
-		multipart = new MimeMultipart();
-
-		MimeBodyPart textBodyPart = new MimeBodyPart();
-
+		if (multipart == null){
+			multipart = new MimeMultipart();
+			MimeBodyPart textBodyPart = new MimeBodyPart();
+			try {
+				textBodyPart.setText("text/html");
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			try {
+				multipart.addBodyPart(textBodyPart);
+			} catch (MessagingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		try {
-			textBodyPart.setText("message text");
-			multipart.addBodyPart(textBodyPart);
+			
+			
 			File file = new File(pdfAttachment);
 
 			MimeBodyPart mimeBodyPart = new MimeBodyPart();
@@ -100,7 +112,7 @@ public class EmailerWorker {
 	}
 	
 	private boolean setEmailMessage(Contact destination,String subject, String message){
-	    Message msg = new MimeMessage(session);
+	    msg = new MimeMessage(session);
 	    try {
 			msg.setRecipients(Message.RecipientType.TO,InternetAddress.parse(destination.getEmail(), false));
 			msg.setSubject(subject);
@@ -115,16 +127,17 @@ public class EmailerWorker {
 	
 	private boolean sendMail(){
 		
-		if (multipart != null)
+		if (multipart != null){
 			try {
 				msg.setContent(multipart);
 			} catch (MessagingException e1) {
 				return false;
 			}
+		}
+		if (!isValid(host.getUsername()) || ! isValid(host.getPassword()))  return false;
+		
 		SMTPTransport t=null;
 	    try {
-	    	if (!isValid(host.getUsername()) || ! isValid(host.getPassword()))  return false;
-	    	
 		     t =(SMTPTransport)session.getTransport(PROTOCOL);
 		     t.connect(host.getHost(), host.getUsername(), host.getPassword());
 		     t.sendMessage(msg, msg.getAllRecipients());

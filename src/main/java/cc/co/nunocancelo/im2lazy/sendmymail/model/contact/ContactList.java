@@ -56,6 +56,9 @@ public class ContactList {
 		this.contactList = contactList;
 	}
 
+	public int getSize(){
+		return contactList.size();
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */

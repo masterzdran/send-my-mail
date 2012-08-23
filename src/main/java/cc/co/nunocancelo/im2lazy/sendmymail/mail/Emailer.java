@@ -14,8 +14,9 @@
  *   You should have received a copy of the GNU General Public License
  *   along with SendMyMail.  If not, see <http://www.gnu.org/licenses/>.
  */
-package cc.co.nunocancelo.im2lazy.sendmymail.worker;
+package cc.co.nunocancelo.im2lazy.sendmymail.mail;
 
+import cc.co.nunocancelo.im2lazy.sendmymail.mail.worker.EmailerWorker;
 import cc.co.nunocancelo.im2lazy.sendmymail.model.Email;
 import cc.co.nunocancelo.im2lazy.sendmymail.model.EmailAttachment;
 import cc.co.nunocancelo.im2lazy.sendmymail.model.contact.Contact;
@@ -43,8 +44,11 @@ public class Emailer {
 		int all=0,send=0;
 		EmailerWorker mail = new EmailerWorker(email.getHost());
 		
-		for(String pdfAttachment : email.getEmailAttachment().getFileList())
-			mail.addAttachment(pdfAttachment);
+		EmailAttachment ea =email.getEmailAttachment();
+		
+		if (ea != null)
+			for(String pdfAttachment : ea.getFileList())
+				mail.addAttachment(pdfAttachment);
 		
 		for(Contact c : email.getEmailHeader().getTo().getList()){
 			r=mail.send(c, email.getEmailDetail().getSubject(), email.getEmailDetail().getBody());
