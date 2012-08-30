@@ -16,6 +16,7 @@
  */
 package cc.co.nunocancelo.im2lazy.sendmymail.mail;
 
+import cc.co.nunocancelo.im2lazy.sendmymail.exception.EmailerWorker;
 import cc.co.nunocancelo.im2lazy.sendmymail.exception.InvalidEmailException;
 import cc.co.nunocancelo.im2lazy.sendmymail.exception.InvalidHostException;
 import cc.co.nunocancelo.im2lazy.sendmymail.model.Email;
