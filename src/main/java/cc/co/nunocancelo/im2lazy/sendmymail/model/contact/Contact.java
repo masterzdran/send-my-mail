@@ -28,18 +28,35 @@ public class Contact {
 	private final String EMAILPATTERN = "^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	public Contact() {}
 
+	/**
+	 * Get the email of the contact
+	 * @return
+	 */
 	public String getEmail() {
 		return email;
 	}
+	/**
+	 * Get the Name of the contact
+	 * @return
+	 */
 	public String getName() {
 		return name;
 	}
 	
+	/**
+	 * Set the email of the contact
+	 * @param email
+	 * @throws InvalidEmailException
+	 */
 	public void setEmail(String email) throws InvalidEmailException {
 		if (!validEmail(email))
 			throw new InvalidEmailException(email+" is not an valid email");
 		this.email = email;
 	}
+	/**
+	 * Set the name of the contact
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}

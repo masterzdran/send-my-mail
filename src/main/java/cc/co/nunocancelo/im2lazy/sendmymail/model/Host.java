@@ -31,30 +31,62 @@ public class Host {
 		this.host = host;
 		this.port = port;
 	}
+	/**
+	 * Get the host address
+	 * @return
+	 */
 	public String getHost() {
 		return host;
 	}
 
+	/**
+	 * Set the host address
+	 * @param host
+	 */
 	public void setHost(String host) {
 		this.host = host;
 	}
 
+	/**
+	 * Get the Port
+	 * @return
+	 */
 	public Integer getPort() {
 		return port;
 	}
 
+	/**
+	 * Set the port
+	 * @param port
+	 */
 	public void setPort(Integer port) {
 		this.port = port;
 	}
+	/**
+	 * Get the passpowd in PLAIN TEXT.
+	 * @return
+	 */
 	public String getPassword() {
 		return password;
 	}
+	/**
+	 * Get the username
+	 * @return
+	 */
 	public String getUsername() {
 		return username;
 	}
+	/**
+	 * Set the password in PLAIN TEXT
+	 * @param password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	/**
+	 * Set the username
+	 * @param username
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}

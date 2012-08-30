@@ -3,10 +3,6 @@
  */
 package cc.co.nunocancelo.im2lazy.sendmymail.model.contact;
 
-import static org.junit.Assert.fail;
-
-import java.util.Set;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -90,6 +86,7 @@ public class ContactListTest {
 		Assert.assertTrue(list != null);
 		int i=0;
 		for(Contact c : list){
+			System.out.println(c.getName());
 			i++;
 		}
 		Assert.assertTrue(i==9);
@@ -102,9 +99,9 @@ public class ContactListTest {
 	@Test
 	public void testGetContactList() {
 		this.addContactsToList();
-		Set<Contact> list = contactList.getContactList();
+		Iterable<Contact> list = contactList.getList();
 		Assert.assertTrue(list != null);
-		Assert.assertTrue(list.size()==9);
+		Assert.assertTrue(contactList.getSize()==9);
 	}
 
 

@@ -29,41 +29,62 @@ public class EmailHeader {
 	private ContactList to;
 	private ContactList cc;
 	private ContactList bcc;
+	
 	public EmailHeader() {
 		this.from = new Contact();
 		this.to = new ContactList();
 		this.cc = new ContactList();
 		this.bcc = new ContactList();
 	}
+	/**
+	 * The From email user
+	 * @param contact
+	 * @return
+	 */
 	public boolean setFrom(Contact contact){
-		if(contact == null) return false;
-		if(contact.getEmail().trim().isEmpty()) return false;
+		if(contact == null || contact.getEmail().trim().isEmpty()) return false;
 		try {
 			from.setEmail(contact.getEmail());
+			from.setName(contact.getName());
 		} catch (InvalidEmailException e) {
 			return false;
 		}
-		from.setName(contact.getName());
 		return true;
 	}
-	public void setBcc(ContactList bcc) {
-		this.bcc = bcc;
-	}
-	public void setCc(ContactList cc) {
-		this.cc = cc;
-	}
+
+	
+
+	/**
+	 * Set the TO contactList
+	 * @param to
+	 */
 	public void setTo(ContactList to) {
 		this.to = to;
 	}
-	public ContactList getBcc() {
+	
+	ContactList getBcc() {
 		return bcc;		
 	}
-	public ContactList getCc() {
+	ContactList getCc() {
 		return cc;
 	}
+	void setBcc(ContactList bcc) {
+		this.bcc = bcc;
+	}
+	void setCc(ContactList cc) {
+		this.cc = cc;
+	}
+	/**
+	 * Get the Contact List
+	 * @return
+	 */
 	public ContactList getTo() {
 		return to;
 	}
+	/**
+	 * Get the From Contact
+	 * @return
+	 */
 	public Contact getFrom() {
 		return from;
 	}

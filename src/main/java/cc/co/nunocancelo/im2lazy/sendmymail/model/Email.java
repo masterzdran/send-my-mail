@@ -26,27 +26,59 @@ public class Email {
 	private EmailDetail emailDetail;
 	private EmailAttachment emailAttachment;
 	
+	/**
+	 * Get the Email detail (The Body/Subject of the email message)
+	 * @return
+	 */
 	public EmailDetail getEmailDetail() {
 		return emailDetail;
 	}
+	/**
+	 * Get the Email header(Destination and From conctats )
+	 * @return
+	 */
 	public EmailHeader getEmailHeader() {
 		return emailHeader;
 	}
+	/**
+	 * Get the Host server
+	 * @return
+	 */
 	public Host getHost() {
 		return host;
 	}
+	/**
+	 * Get The attachments
+	 * @return
+	 */
 	public EmailAttachment getEmailAttachment() {
 		return emailAttachment;
 	}
+	/**
+	 * Set the email detail (The Body/Subject of the email message)
+	 * @param emailDetail
+	 */
 	public void setEmailDetail(EmailDetail emailDetail) {
 		this.emailDetail = emailDetail;
 	}
+	/**
+	 * Set the email header  (Destination and From conctats )
+	 * @param emailHeader
+	 */
 	public void setEmailHeader(EmailHeader emailHeader) {
 		this.emailHeader = emailHeader;
 	}
+	/**
+	 * Set the mail server host
+	 * @param host
+	 */
 	public void setHost(Host host) {
 		this.host = host;
 	}
+	/**
+	 * Set the attachments
+	 * @param emailAttachment
+	 */
 	public void setEmailAttachment(EmailAttachment emailAttachment) {
 		this.emailAttachment = emailAttachment;
 	}

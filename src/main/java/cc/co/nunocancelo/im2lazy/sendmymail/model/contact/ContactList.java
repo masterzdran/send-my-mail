@@ -30,6 +30,11 @@ public class ContactList {
 	public ContactList() {
 		contactList= new HashSet<Contact>();
 	}
+	/**
+	 * Add new Contact to the 'Repository'
+	 * @param contact
+	 * @return : Return false if theres is a empty,invalid email or even if the contact is null, otherwise is an sucessfull action.
+	 */
 	public boolean add(Contact contact)
 	{
 		if(contact == null) return false;
@@ -43,19 +48,27 @@ public class ContactList {
 		c.setName(contact.getName());
 		return contactList.add(c);
 	}
+	/**
+	 * Remove an Contact from the repository
+	 * @param contact
+	 * @return : Return true if the contact is removed, false otherwise
+	 */
 	public boolean remove(Contact contact){
+		if(contact == null) return false;
 		return contactList.remove(contact);
 	}
+	/**
+	 * 
+	 * @return : An iterable data structure with the contacts
+	 */
 	public Iterable<Contact> getList() {
 		return contactList;
 	}
-	public Set<Contact> getContactList() {
-		return contactList;
-	}
-	public void setContactList(Set<Contact> contactList) {
-		this.contactList = contactList;
-	}
 
+	/**
+	 * Return the size of the 'Repository'
+	 * @return
+	 */
 	public int getSize(){
 		return contactList.size();
 	}

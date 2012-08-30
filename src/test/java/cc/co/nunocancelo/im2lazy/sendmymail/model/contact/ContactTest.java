@@ -16,9 +16,8 @@
  */
 package cc.co.nunocancelo.im2lazy.sendmymail.model.contact;
 
-import static org.junit.Assert.*;
-
-import javax.annotation.PreDestroy;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
 import org.junit.Before;

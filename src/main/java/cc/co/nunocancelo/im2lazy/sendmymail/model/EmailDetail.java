@@ -23,15 +23,35 @@ package cc.co.nunocancelo.im2lazy.sendmymail.model;
 public class EmailDetail {
 	private String subject;
 	private String body;
+	
+	/**
+	 * Get the email body text
+	 * @return
+	 */
 	public String getBody() {
 		return body;
 	}
+	
+	/**
+	 * Get the email subject
+	 * @return
+	 */
 	public String getSubject() {
 		return subject;
 	}
+	
+	/**
+	 * Set the email Body text
+	 * @param body
+	 */
 	public void setBody(String body) {
 		this.body = body;
 	}
+	
+	/**
+	 * Set the email subject
+	 * @param subject
+	 */
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}

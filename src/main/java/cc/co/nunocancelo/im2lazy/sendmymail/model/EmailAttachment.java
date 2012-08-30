@@ -29,11 +29,18 @@ public class EmailAttachment{
 	public EmailAttachment() {
 		fileList = new HashSet<String>();
 	}
-	
+	/**
+	 * Add file path to the attachment "repository"
+	 * @param absolutePathFile
+	 * @return
+	 */
 	public boolean addAttachment(String absolutePathFile){
 		return fileList.add(absolutePathFile);
 	}
-	
+	/**
+	 * get an iterable structure with the files paths
+	 * @return
+	 */
 	public Iterable<String> getFileList() {
 		return fileList;
 	}
