@@ -14,7 +14,7 @@
  *   You should have received a copy of the GNU General Public License
  *   along with SendMyMail.  If not, see <http://www.gnu.org/licenses/>.
  */
-package cc.co.nunocancelo.im2lazy.sendmymail.exception;
+package cc.co.nunocancelo.im2lazy.sendmymail.mail;
 
 import java.io.File;
 import java.util.Properties;
