@@ -2,11 +2,11 @@ package cc.co.nunocancelo.im2lazy.sendmymail;
 
 import org.junit.Test;
 
+import cc.co.nunocancelo.im2lazy.sendmymail.exception.InvalidEmailDetailException;
 import cc.co.nunocancelo.im2lazy.sendmymail.exception.InvalidEmailException;
+import cc.co.nunocancelo.im2lazy.sendmymail.exception.InvalidEmailHeaderException;
 import cc.co.nunocancelo.im2lazy.sendmymail.exception.InvalidHostException;
 import cc.co.nunocancelo.im2lazy.sendmymail.mail.Emailer;
-import cc.co.nunocancelo.im2lazy.sendmymail.mail.InvalidEmailDetailException;
-import cc.co.nunocancelo.im2lazy.sendmymail.mail.InvalidEmailHeaderException;
 import cc.co.nunocancelo.im2lazy.sendmymail.model.Email;
 import cc.co.nunocancelo.im2lazy.sendmymail.model.EmailAttachment;
 import cc.co.nunocancelo.im2lazy.sendmymail.model.EmailDetail;
